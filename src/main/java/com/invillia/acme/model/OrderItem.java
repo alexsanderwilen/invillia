@@ -2,13 +2,7 @@ package com.invillia.acme.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
@@ -24,6 +18,10 @@ public class OrderItem {
     private BigDecimal unitPrice;
 
     private int quantity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderitem_id_item", referencedColumnName = "item_id")
+    private Item item;
 
     @ManyToOne
     @JoinColumn(name="orderitem_id_order", nullable=false)
