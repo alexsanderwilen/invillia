@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1l;
 
-    private static final String uri = "http://SancodePonto-env.ngqrp5khcv.us-east-2.elasticbeanstalk.com:8080/clientes/ativacao/";
+    private static final String uri = "invilliastore.us-east-2.elasticbeanstalk.com:8080/customers/activate/";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

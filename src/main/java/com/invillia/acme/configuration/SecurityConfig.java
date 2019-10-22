@@ -29,14 +29,16 @@ import java.util.Arrays;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
-            "/h2/**",
-            "/customers/**"
+            "/h2/**"
     };
+
     private static final String[] PUBLIC_MATCHERS_POST = {
-            "/customers/**"
+            "/customers/**",
+            "/stores/**"
     };
     private static final String[] PUBLIC_MATCHERS_GET = {
-            "/customers/**"
+            "/customers/**",
+            "/stores/**"
     };
 
     @Autowired
