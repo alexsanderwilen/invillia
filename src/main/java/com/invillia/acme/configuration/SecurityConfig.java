@@ -30,13 +30,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] PUBLIC_MATCHERS = {
             "/h2/**",
-            "/customer/**"
+            "/customers/**"
     };
     private static final String[] PUBLIC_MATCHERS_POST = {
-            "/customer/**"
+            "/customers/**"
     };
     private static final String[] PUBLIC_MATCHERS_GET = {
-            "/customer/**"
+            "/customers/**"
     };
 
     @Autowired
