@@ -2,6 +2,7 @@ package com.invillia.acme.model;
 
 
 import com.invillia.acme.model.enums.Profile;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1l;
 
@@ -53,6 +55,10 @@ public class Customer implements Serializable {
     private String password;
 
     private boolean active;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id_store", referencedColumnName = "store_id")
+    private Store store;
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Profile")

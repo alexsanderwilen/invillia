@@ -3,9 +3,13 @@ package com.invillia.acme.service;
 import com.invillia.acme.exception.AuthorizationException;
 import com.invillia.acme.exception.NoContentException;
 import com.invillia.acme.model.Customer;
+import com.invillia.acme.model.Store;
 import com.invillia.acme.model.enums.Profile;
 import com.invillia.acme.repository.CustomerRepository;
+import com.invillia.acme.repository.StoreRepository;
 import com.invillia.acme.security.UserSS;
+import javassist.NotFoundException;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,6 +27,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
+    @Autowired
+    private StoreRepository storeRepository;
 
     @Autowired
     private EmailService emailService;
@@ -58,6 +65,19 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public void saveCustomer(Customer customer) {
         customer.setPassword(bCryptPasswordEncoder.encode(customer.getPassword()));
+
+        if(customer.getStore() == null){
+            throw new RuntimeException("Customer must belong to a store.");
+        }
+
+        Optional<Store> store = storeRepository.findById(customer.getStore().getId());
+
+        if (!store.isPresent()){
+
+            throw new RuntimeException("Store associated with customer not found.");
+        }
+
+        customer.setStore(store.get());
         customerRepository.save(customer);
 
         emailService.sendOrderConfimationEmail(customer);

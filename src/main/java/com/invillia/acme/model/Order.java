@@ -15,10 +15,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Table(name = "OrderStore")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
