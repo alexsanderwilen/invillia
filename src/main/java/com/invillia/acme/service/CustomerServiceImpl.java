@@ -78,7 +78,12 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setStore(store.get());
         customerRepository.save(customer);
 
-        emailService.sendOrderConfimationEmail(customer);
+        try {
+            emailService.sendOrderConfimationEmail(customer);
+        }catch (Exception e){
+            // This try is not to stop execution, the Customer was successfully included what can give error is sending email to the customer;
+            // Here I could write a log stating that there was an error sending email to the customer, but as I did not log anywhere ...
+        }
     }
 
     @Override
