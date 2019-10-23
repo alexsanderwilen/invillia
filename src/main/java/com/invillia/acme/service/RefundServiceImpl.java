@@ -1,5 +1,6 @@
 package com.invillia.acme.service;
 
+import com.invillia.acme.exception.OrderNotFoundException;
 import com.invillia.acme.exception.RefundExpiredDaysOrder;
 import com.invillia.acme.model.Order;
 import com.invillia.acme.model.Refund;
@@ -26,6 +27,11 @@ public class RefundServiceImpl implements RefundService {
 
     @Override
     public void saveRefund(Refund refund) {
+
+        if(refund.getOrder() == null){
+            throw new OrderNotFoundException("Order not informed on refund");
+        }
+
         Order order = orderRepository.getOne(refund.getOrder().getId());
 
         LocalDate today = LocalDate.now();
