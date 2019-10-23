@@ -24,7 +24,6 @@ public class CustomerResource {
     @Autowired
     private CustomerServiceImpl customerService;
 
-    // @PreAuthorize("hasAnyRole('ADMIN')")
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Customer> getCustomers() {
@@ -57,11 +56,9 @@ public class CustomerResource {
 
     }
 
-    //@PreAuthorize("hasAnyRole('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteCustomer(@PathParam("id") Long id) {
         customerService.deleteCustomer(id);
     }
-
 }

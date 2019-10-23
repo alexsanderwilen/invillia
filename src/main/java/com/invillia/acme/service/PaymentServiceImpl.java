@@ -2,10 +2,10 @@ package com.invillia.acme.service;
 
 import com.invillia.acme.model.Payment;
 import com.invillia.acme.repository.PaymentRepository;
+import com.invillia.acme.repository.filter.PaymentFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -15,17 +15,13 @@ public class PaymentServiceImpl implements PaymentService{
     private PaymentRepository paymentRepository;
 
     @Override
-    public Payment getPaymentByOrder(Long order_id) {
-        return paymentRepository.getPaymentByOrder(order_id);
+    public List<Payment> filter(PaymentFilter paymentFilter) {
+        return paymentRepository.filter(paymentFilter);
     }
 
     @Override
-    public List<Payment> getPaymentByPaymentDateBetween(LocalDate paymentDateStart, LocalDate paymentDateEnd) {
-        return paymentRepository.getPaymentByPaymentDateBetween(paymentDateStart, paymentDateEnd);
+    public void savePayment(Payment payment) {
+        paymentRepository.save(payment);
     }
 
-    @Override
-    public List<Payment> getPaymentByStatus(String Status) {
-        return paymentRepository.getPaymentByStatus(Status);
-    }
 }
