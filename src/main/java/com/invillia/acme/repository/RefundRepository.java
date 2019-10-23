@@ -1,11 +1,9 @@
 package com.invillia.acme.repository;
 
-import com.invillia.acme.model.Customer;
+import com.invillia.acme.model.Refund;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
-    Customer findByEmail(String email);
+public interface RefundRepository extends JpaRepository<Refund, Long> {
 }

@@ -12,25 +12,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
-import java.time.LocalDate;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Payment {
+public class Refund {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id")
+    @Column(name = "refund_id")
     private Long id;
 
-    private String status;
-
-    private String creditCardNumber;
-
-    private LocalDate paymentDate;
-
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "payment_id_order", referencedColumnName = "order_id")
+    @JoinColumn(name = "refund_id_order", referencedColumnName = "order_id")
     private Order order;
+
+    private String orderItems;
 }

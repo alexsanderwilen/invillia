@@ -18,7 +18,7 @@ public class UserSS implements UserDetails {
     private Collection<? extends GrantedAuthority> autorities;
 
     public UserSS() {
-    }
+        }
 
     public UserSS(Long id, String email, String password, Set<Profile> perfis) {
         this.id = id;

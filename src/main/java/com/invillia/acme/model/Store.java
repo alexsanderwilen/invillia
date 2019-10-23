@@ -1,5 +1,6 @@
 package com.invillia.acme.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,9 +42,11 @@ public class Store {
 
     private String city;
 
-//    @OneToOne(mappedBy = "store")
-//    private Customer customer;
+    @OneToOne(mappedBy = "store")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Customer customer;
 
     @OneToMany(mappedBy = "store", targetEntity = Order.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Order> orders = new ArrayList<>();
 }

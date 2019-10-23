@@ -1,5 +1,6 @@
 package com.invillia.acme.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -47,8 +48,14 @@ public class Order {
     private Store store;
 
     @OneToMany(mappedBy = "order", targetEntity = OrderItem.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<OrderItem> orderItems;
 
     @OneToOne(mappedBy = "order")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Payment payment;
+
+    @OneToOne(mappedBy = "order")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Refund refund;
 }

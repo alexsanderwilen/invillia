@@ -27,5 +27,5 @@ public class StoreDTO {
 
     private String city;
 
-    private List<Order> orders;
+    //private List<Order> orders;
 }

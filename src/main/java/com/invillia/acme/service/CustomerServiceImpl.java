@@ -8,8 +8,6 @@ import com.invillia.acme.model.enums.Profile;
 import com.invillia.acme.repository.CustomerRepository;
 import com.invillia.acme.repository.StoreRepository;
 import com.invillia.acme.security.UserSS;
-import javassist.NotFoundException;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -108,7 +106,6 @@ public class CustomerServiceImpl implements CustomerService {
 
             return "Registration successfully activated.";
         }
-
         return "Error activating registration.";
     }
 }
